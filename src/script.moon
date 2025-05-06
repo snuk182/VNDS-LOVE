@@ -60,7 +60,7 @@ next_instruction = (s) ->
 			return s, ins
 		when "setvar", "gsetvar"
 			MEM = mem_type(s, ins.type)
-			ins.value.literal = ins.value.literal or MEM[ins.value.var] or 0
+			ins.value.literal = MEM[ins.value.var] or ins.value.literal or 0
 			MEM[ins.var] = ops[ins.modifier](ins.value.literal, MEM[ins.var])
 			if ins.modifer ==  "~" then MEM = {}
 		when "random" then MEM[ins.var] = math.random(ins.low, ins.high)
